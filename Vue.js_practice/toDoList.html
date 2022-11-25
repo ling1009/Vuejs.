@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>toDoList_practice</title>
+</head>
+<style>
+    .wrap{
+        width: 600px;
+        margin: auto;
+    }
+    ul{
+     list-style:none;
+    }
+    li{
+        line-height: 30px;
+        color: #64655F;
+        font-weight: 800;
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    .top{
+        display: flex;
+    }
+    .addarea{
+        width: 250px;
+        height: 40px;
+        background: #FAF6EB;
+        border-radius: 16px;
+        margin: 20px;
+    }
+
+    .dele{
+        background: #FAF6EB;
+        border-radius: 40%;
+        border:2px solid #64655F;
+        color:#64655F ;
+        font-size: 8px;
+        font-weight: 600;
+        margin-left: 10px;
+    }
+
+    .newevent{
+        width: 500px;
+        height: 30px;
+        border: 1px solid red;
+    }
+
+    .done{
+       
+        width: 500px;
+        height: 100px;
+        border-top: 1px solid black;
+    }
+
+    input:checked + p{
+            text-decoration-line: line-through;
+        }
+    .event{
+        display: inline-block;
+    }
+    .butn{
+        width: 180px;
+        padding: 10px 30px;
+        background: #FAF6EB;
+        box-shadow: 0px 6px 0px #64655F;
+        border-radius: 16px;
+        color: #64655F;
+        font-weight: 700;
+        font-size: 18px;
+        margin: 20px;
+    }
+
+    .butn:hover{
+        background: #FFE49C;
+    }
+    p{
+        color: #64655F;
+        font-weight: 800;
+        font-size: 24px;
+    }
+    .title{
+        color: #64655F;
+        font-weight: 800;
+        font-size: 30px;
+        text-align: left;
+    }
+   
+
+
+</style>
+<body>
+   
+    <div id="app" class="wrap">
+        <div class="title">代辦清單 To Do List</div>
+        <div class="top">
+            <input type="text" v-model="newEvent" class="addarea">
+            <button @click="addEvent" class="butn">新增</button> 
+        </div>
+            <ul> 
+                <li v-for="(todo,index) in todos" :key="index" >
+                <input type="checkbox" v-model="todo.complete" > 
+                <p class="event">{{index + 1}}.{{ todo.content }}</p>
+                <button @click="deleEvent(index)" class="dele"> x </button>
+                </li>
+            </ul>
+    
+        <div class="done">
+            <p class="donezone" >完成事項</p> 
+            
+            <ul>
+                <li v-for="(todo, index) in doneEvent" :key="index">
+                    {{index + 1}}.{{ todo.content }}
+                </li>
+            </ul>
+            <button @click="resetAll"  class="butn">重置</button>
+            <button @click="deleDoneEvent"  class="butn">清除完成項目</button>
+        </div>
+    
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        Vue.createApp({
+            data(){
+                return {
+                    newEvent:'',
+
+                    todos:[{
+                        content:"去紫南宮求發財金",
+                        complete:false,
+                    },
+                    {   
+                        content:"去吃一人燒肉",
+                        complete:false,
+                    },
+    
+                    ],
+                }
+            },
+            computed:{
+                doneEvent(index){
+                    return this.todos.filter(todo => todo.complete);
+                },
+            },
+            methods:{
+                addEvent(){
+                    this.todos.push({
+                       content: this.newEvent
+                    })
+                    this.newEvent = ''
+                },
+
+                deleEvent(index){
+                    this.todos.splice(index,1)
+                },
+                resetAll(){
+                    this.todos = []   
+                },
+                deleDoneEvent(){
+                    this.todos = this.todos.filter(todo => !todo.complete);
+                },
+                    
+                
+            },
+            
+        }).mount("#app") 
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

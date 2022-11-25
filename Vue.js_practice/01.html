@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本筆記</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{}} 雙括弧是模板語言  -->
+        <h1>{{count}}</h1>
+        <p>{{name}}</p>
+        <div>{{array}}</div>
+        <div>{{talk}}</div>
+        <div>{{obj}}</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        // 新增一個應用application → 建立Vue實體(instance)
+        // console.log(Vue)
+        Vue.createApp({
+            data(){
+                return {
+                    count: 1,
+                    name : 'Lynn',
+                    array : [1,2,3,4,5,6,7,8],
+                    talk: true,
+                    obj: {test : 123},
+                }
+            },
+        }).mount("#app") //並掛載(mount)在網頁結點(id="app")上
+    </script>
+
+
+    <!--================== Vue2 的寫法 ==================  -->
+    <!-- <div id="app">  <h1>{{count}}</h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script> -->
+        <!-- console.log(Vue)
+        寫法一 :
+        new (Vue)({
+            data: {
+               count:1
+            },
+            el: '#app'
+        })
+
+         寫法二 :
+         const App = new Vue({
+            data: {
+                count: 1
+             },
+         })
+         App.$mount('#app') -->
+
+    <!-- </script> -->
+ <!--================== Vue2 的寫法 ==================  -->
+
+
+
+
+<script> 
+    // methods - 事件處理屬性 : 設定事件要怎麼進行的函式  (可以帶參數)
+
+    // computed - 計算屬性 :  作運算並回傳結果 (沒有辦法帶參數) 
+
+</script> 
+</html>
+
+
+
